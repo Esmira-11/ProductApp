@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import { Form,FormGroup,Label,Input,Button} from 'reactstrap'
+import TableComponent from './TableComponent';
 
 function FormComponent(props) {
-
     const [data, setData] = useState({}) ;
-
     const addNewData =(value,dataName)=>
     {   
         const newState= {...data ,[dataName]: value }
         setData(newState)
          
     }
-
+    
   return (
     <>
-    <Form inline>
+    <Form inline >
         <FormGroup>
           <Label for="exampleCategory" hidden>Category</Label>
           <Input type="text" name="category" id="exampleCategory" placeholder="Category" onChange={(e)=>addNewData(e.target.value,'category')} />
@@ -27,8 +26,10 @@ function FormComponent(props) {
           <Label for="examplePrice" hidden>Price</Label>
           <Input type="text" name="price" id="examplePrice" placeholder="Price" onChange={(e)=>addNewData(e.target.value,'price')} />
         </FormGroup>
-        <Button onClick={()=>props.propFunction(data)}>Submit</Button>
+        <Button onClick={()=>props.propAddFunction(data)}>Submit</Button>
       </Form>
+
+      
     </>
   )
 }

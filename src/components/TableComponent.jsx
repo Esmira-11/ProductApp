@@ -1,6 +1,8 @@
 import React from 'react'
 import { Table} from 'reactstrap'
-function TableComponent({productsData}) {
+function TableComponent(props) {
+  let id = 1
+  let {productsData} =props
   return (
     <>
     <Table>
@@ -16,13 +18,14 @@ function TableComponent({productsData}) {
     <tbody>
       
       {productsData.map(
-        e => <tr>
-        <td>{e.id}</td>
-        <td>{e.category}</td>
-        <td>{e.name}</td>
-        <td>{e.price}</td>
-        <td><button style={{backgroundColor:'red',color:'#fff'}}>Delete</button></td>
+        item => <tr >
+        <td>{item.id=id++}</td>
+        <td>{item.category}</td>
+        <td>{item.name}</td>
+        <td>{item.price}</td>
+        <td><button style={{backgroundColor:'red',color:'#fff'}} onClick={() => props.propRemoveFunction(item.id)}>Delete</button></td>
       </tr>
+      
       )}
     </tbody>
   </Table>

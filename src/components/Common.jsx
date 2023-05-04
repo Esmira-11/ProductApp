@@ -4,13 +4,19 @@ import FormComponent from './FormComponent'
 import TableComponent from './TableComponent'
 
 function Common() {
-
+    
     const [products ,setProducts]= useState([]) ;
+    const [product, setproduct] = useState(products);
 
     const addProduct = (element)=>
     {
         products.push(element)
         setProducts([...products]) ;
+    }
+
+    const removeProduct = (id) => {
+        let filteredProducts = product.filter(q => q.id != id);
+        setproduct([...filteredProducts])
     }
 
   return (
@@ -21,11 +27,11 @@ function Common() {
             </Row>
             <Row>
                 <Col xs={6}>
-                    <TableComponent productsData = {products}/>
+                    <TableComponent productsData = {products} propRemoveFunction = {removeProduct}/>
 
                 </Col>
                 <Col xs={6}>
-                    <FormComponent propFunction = {addProduct} />
+                    <FormComponent propAddFunction = {addProduct}  />
                 </Col>
 
             </Row>
